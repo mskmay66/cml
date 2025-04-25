@@ -1,0 +1,28 @@
+- id: ruff
+  name: ruff
+  description: "Run 'ruff' for extremely fast Python linting"
+  entry: uv run ruff check --force-exclude
+  language: python
+  types_or: [python, pyi, jupyter]
+  args: []
+  require_serial: true
+  additional_dependencies: []
+  minimum_pre_commit_version: "2.9.2"
+
+- id: ruff-format
+  name: ruff-format
+  description: "Run 'ruff format' for extremely fast Python formatting"
+  entry: uv run ruff format --force-exclude
+  language: python
+  types_or: [python, pyi, jupyter]
+  args: []
+  require_serial: true
+  additional_dependencies: []
+  minimum_pre_commit_version: "2.9.2"
+
+- id: local_tests
+  name: local_tests
+  description: "Run local tests"
+  entry: uv run pytest tests/precommits/
+  language: python
+  types_or: [python]
