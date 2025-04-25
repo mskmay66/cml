@@ -23,6 +23,6 @@
 - id: local_tests
   name: local_tests
   description: "Run local tests"
-  entry: uv run pytest tests/precommits/
+  entry: uv run pytest ./tests/precommits/*
   language: python
   types_or: [python]

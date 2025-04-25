@@ -71,7 +71,7 @@ class CoupledMapLattice:
             self._update_coupled()
         else:
             self._update_independent()
-        self.history.append(self.state.copy())
+        self.history.append(self.state.tolist())
         self.time += 1
 
     def _update_coupled(self) -> None:
@@ -124,6 +124,5 @@ class CoupledMapLattice:
         """
         for _ in range(steps):
             self.update()
-            self.history.append(self.state.copy())
-            self.time += steps
+            self.time += 1
             yield self.state.copy()
