@@ -1,5 +1,5 @@
-from .kaneko import KenekoLattice
-from .rulkov import RulkovLattice
+from cml import KenekoLattice
+from cml import RulkovLattice
 import numpy as np
 
 def test_kaneko():
