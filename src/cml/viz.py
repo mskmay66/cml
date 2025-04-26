@@ -15,24 +15,40 @@ from .cml import CoupledMapLattice
 class Visualization:
     """A class for visualizing the state of a Coupled Map Lattice (CML)."""
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, lattice: CoupledMapLattice) -> None:
+        self.lattice = lattice
 
-    def __call__(self, lattice: CoupledMapLattice) -> None:
+    def show_sim(self) -> None:
         """Update the visualization with the new lattice state.
-
-        Args:
-            lattice (CoupledMapLattice): The updated lattice.
         """
-        assert isinstance(lattice, CoupledMapLattice), (
+        assert isinstance(self.lattice, CoupledMapLattice), (
             'lattice must be an instance of CoupledMapLattice.'
         )
         assert len(
-            lattice.history,
+            self.lattice.history,
         ) > 1, 'History must contain at least two elements.'
-        self.lattice = lattice
+        self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
         self.animate(frames=len(self.lattice.history))
+
+    def show_nueron(self, nueron: tuple[int]) -> None:
+        """Shows the activation over time of a single neuron.
+        Args:
+            nueron (int): The index of the neuron to visualize.
+        """
+        assert isinstance(self.lattice, CoupledMapLattice), (
+            'lattice must be an instance of CoupledMapLattice.'
+        )
+        assert len(
+            self.lattice.history,
+        ) > 1, 'History must contain at least two elements.'
+        self.fig, self.ax = plt.subplots()
+        hist = np.array(self.lattice.history)
+        self.ax.plot(hist[:, nueron[0], nueron[1]])
+        self.ax.set_title(f"Neuron {nueron} Activation Over Time")
+        self.ax.set_xlabel('Time')
+        self.ax.set_ylabel('Activation')
+        plt.show()
 
     def generate_filename(self) -> str:
         """Generate a filename for the animation based on the current date and time.

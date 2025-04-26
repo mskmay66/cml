@@ -125,7 +125,7 @@ class CoupledMapLattice:
 
     def reset(self) -> None:
         """Resets the lattice to its initial state."""
-        self.state = np.random.normal(0, 1, (self.n, self.n))
+        self.state = self.init_state()
         self.history = []
         self.time = 0
 
