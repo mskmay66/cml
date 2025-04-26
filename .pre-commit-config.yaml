@@ -35,6 +35,18 @@ repos:
     rev: v1.15.0
     hooks:
     -   id: mypy
+- repo: https://github.com/astral-sh/uv-pre-commit
+  # uv version.
+  rev: 0.6.17
+  hooks:
+    # Update the uv lockfile
+    - id: uv-lock
+- repo: https://github.com/astral-sh/uv-pre-commit
+  # uv version.
+  rev: 0.6.17
+  hooks:
+    - id: uv-sync
+      args: ["--locked", "--all-packages"]
 - repo: local
   hooks:
   - id: pytest
@@ -44,3 +56,15 @@ repos:
     types: [python]
     pass_filenames: false
     always_run: true
+    minimum_pre_commit_version: "2.9.2"
+  - id: ruff
+    name: ruff
+    description: "Run 'ruff' for extremely fast Python linting"
+    entry: uv run ruff check --force-exclude
+    language: python
+    types_or: [python, pyi, jupyter]
+    args: []
+    require_serial: true
+    additional_dependencies: []
+    always_run: true
+    minimum_pre_commit_version: "2.9.2"
