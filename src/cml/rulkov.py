@@ -1,15 +1,20 @@
-from .cml import CoupledMapLattice
+from __future__ import annotations
+
 import numpy as np
+
+from .cml import CoupledMapLattice
 
 
 class RulkovLattice(CoupledMapLattice):
     """An implementation of the Rulkov map."""
 
-    def __init__(self, n: int, r: float, mu: float, sigma: float, epsilion: float = 1) -> None:
+    def __init__(
+        self, n: int, r: float, mu: float, sigma: float, epsilion: float = 1,
+    ) -> None:
         super().__init__(n, r, epsilion)
         self.mu = mu
         self.sigma = sigma
-    
+
     def init_state(self) -> np.ndarray:
         """Initializes the state of the lattice."""
         return np.random.normal(0, 1, (2, self.n, self.n))
@@ -21,17 +26,19 @@ class RulkovLattice(CoupledMapLattice):
             value (np.ndarray): The new state of the lattice.
         """
         if not isinstance(value, np.ndarray):
-            raise ValueError("State must be a numpy array.")
+            raise ValueError('State must be a numpy array.')
         if value.ndim != 3:
-            raise ValueError("State must be a 3D array.")
+            raise ValueError('State must be a 3D array.')
         if value.dtype != np.float64:
-            raise ValueError("State must be a float64 array.")
+            raise ValueError('State must be a float64 array.')
 
         if value.shape != (2, self.n, self.n):
-            raise ValueError(f"State must be of shape (2, {self.n}, {self.n}).")
+            raise ValueError(
+                f"State must be of shape (2, {self.n}, {self.n}).",
+            )
         self._state = value
 
-    def state_function(self, x: np.ndarray, y: np.ndarray) -> np.ndarray:
+    def state_function(self, x: np.ndarray, y: np.ndarray = None) -> np.ndarray:
         """Applies the Rulkov map update function to the state of the lattice.
 
         Args:
@@ -44,7 +51,6 @@ class RulkovLattice(CoupledMapLattice):
         x_next = (self.r / (1 + x**2)) + y
         y_next = y - self.mu * (x_next - self.sigma)
         return np.array([x_next, y_next])
-    
 
     def _update_coupled(self) -> None:
         """Updates the state of the lattice using the Rulkov map."""
@@ -54,20 +60,21 @@ class RulkovLattice(CoupledMapLattice):
             right_neighbor = state[:, (i + 1) % self.n]
             for j in range(self.n):
                 # Apply the Rulkov map update
-                state[:, i, j] = (
-                    self.epsilion * self.state_function(state[0, i, j], state[1, i, j])
-                    + (self.epsilion / 2) * (
-                        self.state_function(left_neighbor[0] + self.state_function(left_neighbor[1]), 
-                                            left_neighbor[1] + self.state_function(right_neighbor[1]))
+                state[:, i, j] = self.epsilion * self.state_function(
+                    state[0, i, j], state[1, i, j],
+                ) + (self.epsilion / 2) * (
+                    self.state_function(
+                        left_neighbor[0] +
+                        self.state_function(left_neighbor[1]),
+                        left_neighbor[1] +
+                        self.state_function(right_neighbor[1]),
                     )
                 )
         self.state = state
-    
 
     def _update_independent(self) -> None:
         """Updates the state of the lattice using an independent map."""
         self.state = self.state_function(self.state[0], self.state[1])
-    
 
     def update(self):
         if self.epsilion < 1:

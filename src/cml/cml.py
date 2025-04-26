@@ -1,5 +1,8 @@
+from __future__ import annotations
+
+from collections.abc import Generator
+
 import numpy as np
-from typing import List, Generator
 
 
 class CoupledMapLattice:
@@ -12,7 +15,6 @@ class CoupledMapLattice:
         self.state = self.init_state()
         self.history = [self.state]
         self.time = 0
-
 
     def __repr__(self) -> str:
         return f"CoupledMapLattice(n={self.n}, r={self.r}, epsilion={self.epsilion})"
@@ -33,31 +35,31 @@ class CoupledMapLattice:
             value (np.ndarray): The new state of the lattice.
         """
         if not isinstance(value, np.ndarray):
-            raise ValueError("State must be a numpy array.")
+            raise ValueError('State must be a numpy array.')
         if value.ndim != 2:
-            raise ValueError("State must be a 2D array.")
+            raise ValueError('State must be a 2D array.')
         if value.dtype != np.float64:
-            raise ValueError("State must be a float64 array.")
+            raise ValueError('State must be a float64 array.')
 
         if value.shape != (self.n, self.n):
             raise ValueError(f"State must be of shape ({self.n}, {self.n}).")
         self._state = value
 
     @property
-    def history(self) -> List[np.ndarray]:
+    def history(self) -> list[np.ndarray]:
         """Returns the history of the lattice."""
         return self._history
 
     @history.setter
-    def history(self, value: List[np.ndarray]) -> None:
+    def history(self, value: list[np.ndarray]) -> None:
         """Sets the history of the lattice.
         Args:
             value (List[np.ndarray]): The new history of the lattice.
         """
         if not isinstance(value, list):
-            raise ValueError("History must be a list.")
+            raise ValueError('History must be a list.')
         if not all(isinstance(x, np.ndarray) for x in value):
-            raise ValueError("All elements in history must be numpy arrays.")
+            raise ValueError('All elements in history must be numpy arrays.')
 
         self._history = value
 
@@ -89,10 +91,9 @@ class CoupledMapLattice:
             left_neighbor = self.state[(i - 1) % self.n]
             for j in range(self.n):
                 # Apply the coupled map update
-                new_lattice[i, j] = (
-                    self.epsilion * self.state_function(self.state[i, j])
-                    + (1 - self.epsilion) * self.state_function(left_neighbor[j])
-                )
+                new_lattice[i, j] = self.epsilion * self.state_function(
+                    self.state[i, j],
+                ) + (1 - self.epsilion) * self.state_function(left_neighbor[j])
 
             # new_lattice = self.epsilion * self.state_function(self.state) + (
             #     1 - self.epsilion
@@ -114,7 +115,7 @@ class CoupledMapLattice:
         """
         self.state = state
 
-    def get_history(self) -> List[np.ndarray]:
+    def get_history(self) -> list[np.ndarray]:
         """Returns the history of the lattice.
 
         Returns:
@@ -128,7 +129,7 @@ class CoupledMapLattice:
         self.history = []
         self.time = 0
 
-    def simulate(self, steps: int) -> Generator[np.ndarray, None, None]:
+    def simulate(self, steps: int) -> Generator[np.ndarray]:
         """Simulates the lattice for a given number of steps.
         Args:
             steps (int): The number of steps to simulate.
