@@ -7,6 +7,8 @@ class KenekoLattice(CoupledMapLattice):
     def __init__(self, n: int, r: float, epsilion: float = 1) -> None:
         super().__init__(n, r, epsilion)
     
+    def __repr__(self):
+        return f"KenekoLattice(n={self.n}, r={self.r}, epsilion={self.epsilion})"
 
     def update(self):
         """Updates the state of the lattice using the Kaneko map."""

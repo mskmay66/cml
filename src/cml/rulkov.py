@@ -7,10 +7,29 @@ class RulkovLattice(CoupledMapLattice):
 
     def __init__(self, n: int, r: float, mu: float, sigma: float, epsilion: float = 1) -> None:
         super().__init__(n, r, epsilion)
-        self.state = np.random.normal(0, 1, (2, n, n))
         self.mu = mu
         self.sigma = sigma
     
+    def init_state(self) -> np.ndarray:
+        """Initializes the state of the lattice."""
+        return np.random.normal(0, 1, (2, self.n, self.n))
+
+    @CoupledMapLattice.state.setter
+    def state(self, value: np.ndarray) -> None:
+        """Sets the state of the lattice.
+        Args:
+            value (np.ndarray): The new state of the lattice.
+        """
+        if not isinstance(value, np.ndarray):
+            raise ValueError("State must be a numpy array.")
+        if value.ndim != 3:
+            raise ValueError("State must be a 3D array.")
+        if value.dtype != np.float64:
+            raise ValueError("State must be a float64 array.")
+
+        if value.shape != (2, self.n, self.n):
+            raise ValueError(f"State must be of shape (2, {self.n}, {self.n}).")
+        self._state = value
 
     def state_function(self, x: np.ndarray, y: np.ndarray) -> np.ndarray:
         """Applies the Rulkov map update function to the state of the lattice.
@@ -24,8 +43,7 @@ class RulkovLattice(CoupledMapLattice):
         """
         x_next = (self.r / (1 + x**2)) + y
         y_next = y - self.mu * (x_next - self.sigma)
-        self.state[0] = x_next
-        self.state[1] = y_next
+        return np.array([x_next, y_next])
     
 
     def _update_coupled(self) -> None:

@@ -9,9 +9,17 @@ class CoupledMapLattice:
         self.n = n
         self.r = r
         self.epsilion = epsilion
-        self.state = np.random.normal(0, 1, (n, n))
+        self.state = self.init_state()
         self.history = [self.state]
         self.time = 0
+
+
+    def __repr__(self) -> str:
+        return f"CoupledMapLattice(n={self.n}, r={self.r}, epsilion={self.epsilion})"
+
+    def init_state(self) -> np.ndarray:
+        """Initializes the state of the lattice."""
+        return np.random.normal(0, 1, (self.n, self.n))
 
     @property
     def state(self) -> np.ndarray:

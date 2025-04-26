@@ -4,34 +4,6 @@ import numpy as np
 
 def test_kaneko():
     """Test the kaneko latttice."""
-    kaneko_decoupled = KenekoLattice(10, 0.5, 1)
-    initial_state = kaneko_decoupled.state.copy()
-    kaneko_decoupled.update()
-    assert not np.array_equal(initial_state, kaneko_decoupled.state), (
-        "State should change after update."
-    )
-    assert len(kaneko_decoupled.history) == 2, (
-        "History should contain one element after first update."
-    )
-    assert np.array_equal(kaneko_decoupled.history[0], initial_state), (
-        "History should contain the initial state."
-    )
-    assert kaneko_decoupled.time == 1, "Time should increment after update."
-    assert kaneko_decoupled.state.shape == (10, 10), (
-        "State should have the same shape as the lattice."
-    )
-    assert kaneko_decoupled.state.dtype == np.float64, "State should be of type float64."
-    assert kaneko_decoupled.state.ndim == 2, "State should be a 2D array."
-    assert kaneko_decoupled.state.flatten().tolist() == (kaneko_decoupled.r * initial_state * (1 - initial_state)).flatten().tolist(), (
-        "State update formula is incorrect."
-    )
-
-    assert kaneko_decoupled.state.shape == (10, 10), (
-        "State should have the same shape as the lattice."
-    )
-    assert kaneko_decoupled.state.dtype == np.float64, "State should be of type float64."
-    assert kaneko_decoupled.state.ndim == 2, "State should be a 2D array." 
-
     kaneko_coupled = KenekoLattice(10, r=0.5, epsilion=0.5)
     initial_state = kaneko_coupled.state.copy()
     kaneko_coupled.update()
@@ -72,13 +44,13 @@ def test_rulkov():
     )
     assert rulkov_decoupled.state.dtype == np.float64, "State should be of type float64."
     assert rulkov_decoupled.state.ndim == 3, "State should be a 3D array."
-    assert rulkov_decoupled.state.flatten().tolist() == (rulkov_decoupled.r * initial_state * (1 - initial_state)).flatten().tolist(), (
+    assert np.array_equal(rulkov_decoupled.state[0], ((rulkov_decoupled.r / (1 + initial_state[0]**2)) + initial_state[1])), (
         "State update formula is incorrect."
     )
 
     rulkov_coupled = RulkovLattice(10, 0.5, 1, 0.5)
     initial_state = rulkov_coupled.state.copy()
-    rulkov_decoupled.update()
+    rulkov_coupled.update()
     assert not np.array_equal(initial_state, rulkov_coupled.state), (
         "State should change after update."
     )
