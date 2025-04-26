@@ -27,7 +27,7 @@ def test_update():
         "State update formula is incorrect."
     )
 
-    coupled_lattice = CoupledMapLattice(10, r=0.5)
+    coupled_lattice = CoupledMapLattice(10, r=0.5, epsilion=0.5)
     coupled_lattice.update()
     assert lattice.state.shape == (10, 10), (
         "State should have the same shape as the lattice."

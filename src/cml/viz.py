@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import List, Optional
+from typing import Optional
 from matplotlib import animation
 from .cml import CoupledMapLattice
 import os

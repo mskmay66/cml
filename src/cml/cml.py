@@ -79,10 +79,16 @@ class CoupledMapLattice:
         new_lattice = self.state.copy()
         for i in range(self.n):
             left_neighbor = self.state[(i - 1) % self.n]
+            for j in range(self.n):
+                # Apply the coupled map update
+                new_lattice[i, j] = (
+                    self.epsilion * self.state_function(self.state[i, j])
+                    + (1 - self.epsilion) * self.state_function(left_neighbor[j])
+                )
 
-            new_lattice = self.epsilion * self.state_function(self.state) + (
-                1 - self.epsilion
-            ) * self.state_function(left_neighbor)
+            # new_lattice = self.epsilion * self.state_function(self.state) + (
+            #     1 - self.epsilion
+            # ) * self.state_function(left_neighbor)
         self.state = new_lattice
 
     def _update_independent(self) -> None:
