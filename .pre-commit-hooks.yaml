@@ -1,0 +1,10 @@
+- id: pytest
+  name: pytest
+  description: "Run 'pytest' for unit tests"
+  entry: uv run pytest ./tests/precommits/*
+  language: python
+- id: ruff
+  name: ruff
+  description: "Run 'ruff' for extremely fast Python linting"
+  entry: uv run ruff check --force-exclude
+  language: python
