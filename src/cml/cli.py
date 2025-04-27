@@ -92,7 +92,7 @@ def main():
             lattice.update()
 
         viz = Visualization(lattice)
-        viz.show_sim()
+        viz.show_sim(show=False)
 
 
 if __name__ == '__main__':

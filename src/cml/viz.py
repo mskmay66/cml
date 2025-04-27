@@ -18,7 +18,7 @@ class Visualization:
     def __init__(self, lattice: CoupledMapLattice) -> None:
         self.lattice = lattice
 
-    def show_sim(self) -> None:
+    def show_sim(self, show: bool = False) -> None:
         """Update the visualization with the new lattice state."""
         assert isinstance(self.lattice, CoupledMapLattice), (
             'lattice must be an instance of CoupledMapLattice.'
@@ -31,7 +31,7 @@ class Visualization:
         ), 'History must contain at least two elements.'
         self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
-        self.animate(frames=len(self.lattice.history))
+        self.animate(frames=len(self.lattice.history), show=show)
 
     def show_nueron(self, nueron: tuple[int]) -> None:
         """Shows the activation over time of a single neuron.
@@ -89,7 +89,7 @@ class Visualization:
         self.ax.set_xticks([])
         return (self.im,)
 
-    def animate(self, frames: int | None = None) -> None:
+    def animate(self, show: bool, frames: int | None = None) -> None:
         """Animate the visualization.
 
         Args:
@@ -115,4 +115,5 @@ class Visualization:
             writer=PillowWriter(fps=5),
         )
 
-        plt.show()
+        if show:
+            plt.show()
