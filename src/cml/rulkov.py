@@ -25,7 +25,7 @@ class RulkovLattice(CoupledMapLattice):
 
     def init_state(self) -> np.ndarray:
         """Initializes the state of the lattice."""
-        return np.random.normal(0, 1, (2, self.n, self.n))
+        return np.random.uniform(0, 1, (2, self.n, self.n))
 
     @CoupledMapLattice.state.setter
     def state(self, value: np.ndarray) -> None:

@@ -21,7 +21,7 @@ class CoupledMapLattice:
 
     def init_state(self) -> np.ndarray:
         """Initializes the state of the lattice."""
-        return np.random.normal(0, 1, (self.n, self.n))
+        return np.random.uniform(0, 1, (self.n, self.n))
 
     @property
     def state(self) -> np.ndarray:
