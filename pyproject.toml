@@ -9,6 +9,9 @@ dependencies = [
     "numpy>=2.2.5",
 ]
 
+[project.scripts]
+cml = "cml.cli:main"
+
 [build-system]
 requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"

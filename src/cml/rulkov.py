@@ -9,11 +9,19 @@ class RulkovLattice(CoupledMapLattice):
     """An implementation of the Rulkov map."""
 
     def __init__(
-        self, n: int, r: float, mu: float, sigma: float, epsilion: float = 1,
+        self,
+        n: int,
+        r: float,
+        mu: float,
+        sigma: float,
+        epsilion: float = 1,
     ) -> None:
         super().__init__(n, r, epsilion)
         self.mu = mu
         self.sigma = sigma
+
+    def __repr__(self):
+        return f"RulkovLattice(n={self.n}, r={self.r}, epsilion={self.epsilion}, mu={self.mu}, sigma={self.sigma})"
 
     def init_state(self) -> np.ndarray:
         """Initializes the state of the lattice."""
@@ -61,7 +69,8 @@ class RulkovLattice(CoupledMapLattice):
             for j in range(self.n):
                 # Apply the Rulkov map update
                 state[:, i, j] = self.epsilion * self.state_function(
-                    state[0, i, j], state[1, i, j],
+                    state[0, i, j],
+                    state[1, i, j],
                 ) + (self.epsilion / 2) * (
                     self.state_function(
                         left_neighbor[0] +

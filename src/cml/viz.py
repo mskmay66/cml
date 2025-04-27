@@ -19,14 +19,16 @@ class Visualization:
         self.lattice = lattice
 
     def show_sim(self) -> None:
-        """Update the visualization with the new lattice state.
-        """
+        """Update the visualization with the new lattice state."""
         assert isinstance(self.lattice, CoupledMapLattice), (
             'lattice must be an instance of CoupledMapLattice.'
         )
-        assert len(
-            self.lattice.history,
-        ) > 1, 'History must contain at least two elements.'
+        assert (
+            len(
+                self.lattice.history,
+            )
+            > 1
+        ), 'History must contain at least two elements.'
         self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
         self.animate(frames=len(self.lattice.history))
@@ -39,9 +41,12 @@ class Visualization:
         assert isinstance(self.lattice, CoupledMapLattice), (
             'lattice must be an instance of CoupledMapLattice.'
         )
-        assert len(
-            self.lattice.history,
-        ) > 1, 'History must contain at least two elements.'
+        assert (
+            len(
+                self.lattice.history,
+            )
+            > 1
+        ), 'History must contain at least two elements.'
         self.fig, self.ax = plt.subplots()
         hist = np.array(self.lattice.history)
         self.ax.plot(hist[:, nueron[0], nueron[1]])
