@@ -9,9 +9,13 @@ from .viz import Visualization
 
 
 def main():
-    parser = ArgumentParser(description='Run Coupled Map Lattice simulations.')
-    sim_parser = parser.add_subparsers(dest='command')
-    parser.add_parser('simulate', help='Runs a cml simualation.')
+    parser = ArgumentParser(
+        description='Run Coupled Map Lattice simulations.', prog='cml',
+    )
+    subparsers = parser.add_subparsers(dest='command', prog='cml')
+    sim_parser = subparsers.add_parser(
+        'simulate', help='Runs a cml simualation.',
+    )
 
     sim_parser.add_argument(
         '-n',
@@ -37,7 +41,7 @@ def main():
         help='Parameter epsilon for the lattice.',
     )
 
-    sim_parser.add_arguemnt(
+    sim_parser.add_argument(
         '-t',
         '--time',
         type=int,
@@ -49,6 +53,8 @@ def main():
         '-k',
         '--key',
         help='Type of simulation to run.',
+        default='cml',
+        choices=['cml', 'kaneko', 'rulkov'],
     )
 
     sim_parser.add_argument(
