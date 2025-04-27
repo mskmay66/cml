@@ -112,7 +112,7 @@ class Visualization:
         filename = self.generate_filename()
         ani.save(
             os.path.join('map_animations', filename),
-            writer=PillowWriter(fps=30),
+            writer=PillowWriter(fps=5),
         )
 
         plt.show()
