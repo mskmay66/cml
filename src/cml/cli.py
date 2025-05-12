@@ -87,9 +87,9 @@ def main():
             lattice = RulkovLattice(
                 args.nuerons,
                 args.r,
-                args.epsilon,
                 args.mu,
                 args.sigma,
+                args.epsilon,
             )
         else:
             lattice = CoupledMapLattice(args.nuerons, args.r, args.epsilon)

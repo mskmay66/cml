@@ -37,3 +37,5 @@ plugins:
         python:
           options:
             docstring_style: sphinx
+markdown_extensions:
+  - footnotes

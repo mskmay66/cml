@@ -18,6 +18,32 @@ class Visualization:
     def __init__(self, lattice: CoupledMapLattice) -> None:
         self.lattice = lattice
 
+    @property
+    def lattice(self) -> CoupledMapLattice:
+        """Returns the current lattice."""
+        return self._lattice
+
+    @lattice.setter
+    def lattice(self, value: CoupledMapLattice) -> None:
+        """Sets the lattice to the given value.
+        Args:
+            value (CoupledMapLattice): The new lattice.
+        """
+        if not isinstance(value, CoupledMapLattice):
+            raise ValueError(
+                'lattice must be an instance of CoupledMapLattice.',
+            )
+
+        assert (
+            len(
+                value.history,
+            )
+            > 1
+        ), 'History must contain at least two elements.'
+        assert len(np.array(value.history).shape) <= 3, ('Histroy must be 2D.')
+
+        self._lattice = value
+
     def animate(self, show: bool = False) -> None:
         """Vizulizes the simulation of the lattice over time.
         This method creates an animation of the lattice's state over time
@@ -32,15 +58,6 @@ class Visualization:
             AssertionError: If the lattice is not a CoupledMapLattice
                 or if the history does not contain at least two elements.
         """
-        assert isinstance(self.lattice, CoupledMapLattice), (
-            'lattice must be an instance of CoupledMapLattice.'
-        )
-        assert (
-            len(
-                self.lattice.history,
-            )
-            > 1
-        ), 'History must contain at least two elements.'
         self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
         self._animate(frames=len(self.lattice.history), show=show)
@@ -54,15 +71,6 @@ class Visualization:
             AssertionError: If the lattice is not a CoupledMapLattice
                 or if the history does not contain at least two elements.
         """
-        assert isinstance(self.lattice, CoupledMapLattice), (
-            'lattice must be an instance of CoupledMapLattice.'
-        )
-        assert (
-            len(
-                self.lattice.history,
-            )
-            > 1
-        ), 'History must contain at least two elements.'
         self.fig, self.ax = plt.subplots()
         hist = np.array(self.lattice.history)
         self.ax.plot(hist[:, nueron[0], nueron[1]])
@@ -84,7 +92,7 @@ class Visualization:
         """Initialize the animation."""
         self.ax.clear()
         self.im = self.ax.imshow(
-            self.lattice.state,
+            self.lattice.history[0],
             cmap='plasma',
             interpolation='nearest',
             animated=True,

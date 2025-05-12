@@ -19,6 +19,7 @@ class RulkovLattice(CoupledMapLattice):
         super().__init__(n, r, epsilion)
         self.mu = mu
         self.sigma = sigma
+        self.history = [self.state[0]]
 
     def __repr__(self):
         return f"RulkovLattice(n={self.n}, r={self.r}, epsilion={self.epsilion}, mu={self.mu}, sigma={self.sigma})"
@@ -74,9 +75,13 @@ class RulkovLattice(CoupledMapLattice):
                 ) + (self.epsilion / 2) * (
                     self.state_function(
                         left_neighbor[0] +
-                        self.state_function(left_neighbor[1]),
+                        self.state_function(
+                            left_neighbor[0], left_neighbor[1],
+                        ),
                         left_neighbor[1] +
-                        self.state_function(right_neighbor[1]),
+                        self.state_function(
+                            right_neighbor[0], right_neighbor[1],
+                        ),
                     )
                 )
         self.state = state
@@ -90,5 +95,9 @@ class RulkovLattice(CoupledMapLattice):
             self._update_coupled()
         else:
             self._update_independent()
-        self.history.append(self.state.tolist())
+
+        assert self.state[0].shape == (
+            self.n, self.n,
+        ), 'The shape is not correct'
+        self.history.append(self.state[0])
         self.time += 1
