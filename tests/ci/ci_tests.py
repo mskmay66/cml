@@ -39,7 +39,7 @@ def test_rulkov():
     assert len(rulkov_decoupled.history) == 2, (
         'History should contain one element after first update.'
     )
-    assert np.array_equal(rulkov_decoupled.history[0], initial_state), (
+    assert np.array_equal(rulkov_decoupled.history[0], initial_state[0]), (
         'History should contain the initial state.'
     )
     assert rulkov_decoupled.time == 1, 'Time should increment after update.'
@@ -67,7 +67,7 @@ def test_rulkov():
     assert len(rulkov_coupled.history) == 2, (
         'History should contain one element after first update.'
     )
-    assert np.array_equal(rulkov_coupled.history[0], initial_state), (
+    assert np.array_equal(rulkov_coupled.history[0], initial_state[0]), (
         'History should contain the initial state.'
     )
     assert rulkov_coupled.time == 1, 'Time should increment after update.'
