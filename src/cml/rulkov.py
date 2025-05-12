@@ -6,7 +6,21 @@ from .cml import CoupledMapLattice
 
 
 class RulkovLattice(CoupledMapLattice):
-    """An implementation of the Rulkov map."""
+    """An implementation of the Rulkov map.
+
+    The Rulkov map is a coupled map lattice model that exhibits
+    complex behavior, including chaos and synchronization.
+
+    Attributes:
+        n (int): The size of the lattice.
+        r (float): The parameter for the map function.
+        mu (float): The parameter for the map function.
+        sigma (float): The parameter for the map function.
+        epsilion (float): The coupling strength.
+        state (np.ndarray): The current state of the lattice.
+        history (list[np.ndarray]): The history of the lattice states.
+        time (int): The current time step.
+    """
 
     def __init__(
         self,
