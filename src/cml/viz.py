@@ -18,8 +18,20 @@ class Visualization:
     def __init__(self, lattice: CoupledMapLattice) -> None:
         self.lattice = lattice
 
-    def show_sim(self, show: bool = False) -> None:
-        """Update the visualization with the new lattice state."""
+    def animate(self, show: bool = False) -> None:
+        """Vizulizes the simulation of the lattice over time.
+        This method creates an animation of the lattice's state over time
+        and saves it as a GIF file. The animation shows the activation
+        of the lattice's neurons at each time step.
+
+        Args:
+            show (bool): Whether to show the plot immediately.
+                Defaults to False.
+
+        Raises:
+            AssertionError: If the lattice is not a CoupledMapLattice
+                or if the history does not contain at least two elements.
+        """
         assert isinstance(self.lattice, CoupledMapLattice), (
             'lattice must be an instance of CoupledMapLattice.'
         )
@@ -31,12 +43,16 @@ class Visualization:
         ), 'History must contain at least two elements.'
         self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
-        self.animate(frames=len(self.lattice.history), show=show)
+        self._animate(frames=len(self.lattice.history), show=show)
 
     def show_nueron(self, nueron: tuple[int]) -> None:
         """Shows the activation over time of a single neuron.
         Args:
             nueron (int): The index of the neuron to visualize.
+
+        Raises:
+            AssertionError: If the lattice is not a CoupledMapLattice
+                or if the history does not contain at least two elements.
         """
         assert isinstance(self.lattice, CoupledMapLattice), (
             'lattice must be an instance of CoupledMapLattice.'
@@ -89,11 +105,13 @@ class Visualization:
         self.ax.set_xticks([])
         return (self.im,)
 
-    def animate(self, show: bool, frames: int | None = None) -> None:
+    def _animate(self, show: bool, frames: int | None = None) -> None:
         """Animate the visualization.
 
         Args:
+            show (bool): Whether to show the plot immediately.
             frames (Optional[int]): The number of frames to animate. If None, use the length of the history.
+                    Defaults to None.
         """
         self.ax.clear()
         if frames is None:

@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import numpy as np
 from cml import CoupledMapLattice
-from cml import KenekoLattice
+from cml import KanekoLattice
 from cml import RulkovLattice
 
 
 def test_kaneko():
     """Test the kaneko latttice."""
-    kaneko_coupled = KenekoLattice(10, r=0.5, epsilion=0.5)
+    kaneko_coupled = KanekoLattice(10, r=0.5, epsilion=0.5)
     initial_state = kaneko_coupled.state.copy()
     kaneko_coupled.update()
     assert not np.array_equal(initial_state, kaneko_coupled.state), (

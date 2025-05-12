@@ -3,18 +3,20 @@ from __future__ import annotations
 from argparse import ArgumentParser
 
 from .cml import CoupledMapLattice
-from .kaneko import KenekoLattice
+from .kaneko import KanekoLattice
 from .rulkov import RulkovLattice
 from .viz import Visualization
 
 
 def main():
     parser = ArgumentParser(
-        description='Run Coupled Map Lattice simulations.', prog='cml',
+        description='Run Coupled Map Lattice simulations.',
+        prog='cml',
     )
     subparsers = parser.add_subparsers(dest='command', prog='cml')
     sim_parser = subparsers.add_parser(
-        'simulate', help='Runs a cml simualation.',
+        'simulate',
+        help='Runs a cml simualation.',
     )
 
     sim_parser.add_argument(
@@ -76,14 +78,18 @@ def main():
     args = parser.parse_args()
     if args.command == 'simulate':
         if args.key == 'kaneko':
-            lattice = KenekoLattice(args.nuerons, args.r, args.epsilon)
+            lattice = KanekoLattice(args.nuerons, args.r, args.epsilon)
         elif args.key == 'rulkov':
             assert args.mu is not None, 'Mu parameter is required for Rulkov lattice.'
             assert args.sigma is not None, (
                 'Sigma parameter is required for Rulkov lattice.'
             )
             lattice = RulkovLattice(
-                args.nuerons, args.r, args.epsilon, args.mu, args.sigma,
+                args.nuerons,
+                args.r,
+                args.epsilon,
+                args.mu,
+                args.sigma,
             )
         else:
             lattice = CoupledMapLattice(args.nuerons, args.r, args.epsilon)
@@ -92,7 +98,7 @@ def main():
             lattice.update()
 
         viz = Visualization(lattice)
-        viz.show_sim(show=False)
+        viz.animate(show=False)
 
 
 if __name__ == '__main__':

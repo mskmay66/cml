@@ -3,7 +3,7 @@ from __future__ import annotations
 from .cml import CoupledMapLattice
 
 
-class KenekoLattice(CoupledMapLattice):
+class KanekoLattice(CoupledMapLattice):
     """An implementation of the Kaneko map."""
 
     def __init__(self, n: int, r: float, epsilion: float = 1) -> None:

@@ -6,7 +6,17 @@ import numpy as np
 
 
 class CoupledMapLattice:
-    """An implementation of a coupled map lattice (CML) model."""
+    """An implementation of a coupled map lattice (CML) model.
+    Used as a base class for other CML models.
+
+    Attributes:
+        n (int): The size of the lattice.
+        r (float): The parameter for the map function.
+        epsilion (float): The coupling strength.
+        state (np.ndarray): The current state of the lattice.
+        history (list[np.ndarray]): The history of the lattice states.
+        time (int): The current time step.
+    """
 
     def __init__(self, n: int, r: float, epsilion: float = 1) -> None:
         self.n = n
