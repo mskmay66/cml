@@ -10,7 +10,7 @@ class KanekoLattice(CoupledMapLattice):
         super().__init__(n, r, epsilion)
 
     def __repr__(self):
-        return f"KenekoLattice(n={self.n}, r={self.r}, epsilion={self.epsilion})"
+        return f"KenekoLattice(n={self.n}, r={self.r}, epsilion={self.epsilon})"
 
     def update(self):
         """Updates the state of the lattice using the Kaneko map."""
@@ -20,8 +20,8 @@ class KanekoLattice(CoupledMapLattice):
             right_neighbor = state[(i + 1) % self.n]
             for j in range(self.n):
                 # Apply the Kaneko map update
-                state[i, j] = self.epsilion * self.state_function(state[i, j]) + (
-                    self.epsilion / 2
+                state[i, j] = self.epsilon * self.state_function(state[i, j]) + (
+                    self.epsilon / 2
                 ) * (
                     self.state_function(
                         left_neighbor[j] +
@@ -29,5 +29,5 @@ class KanekoLattice(CoupledMapLattice):
                     )
                 )
         self.state = state
-        self.history.append(self.state.tolist())
+        self.append_history(self.state)
         self.time += 1

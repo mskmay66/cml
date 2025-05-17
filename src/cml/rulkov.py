@@ -36,7 +36,7 @@ class RulkovLattice(CoupledMapLattice):
         self.history = [self.state[0]]
 
     def __repr__(self):
-        return f"RulkovLattice(n={self.n}, r={self.r}, epsilion={self.epsilion}, mu={self.mu}, sigma={self.sigma})"
+        return f"RulkovLattice(n={self.n}, r={self.r}, epsilion={self.epsilon}, mu={self.mu}, sigma={self.sigma})"
 
     def init_state(self) -> np.ndarray:
         """Initializes the state of the lattice."""
@@ -83,10 +83,10 @@ class RulkovLattice(CoupledMapLattice):
             right_neighbor = state[:, (i + 1) % self.n]
             for j in range(self.n):
                 # Apply the Rulkov map update
-                state[:, i, j] = self.epsilion * self.state_function(
+                state[:, i, j] = self.epsilon * self.state_function(
                     state[0, i, j],
                     state[1, i, j],
-                ) + (self.epsilion / 2) * (
+                ) + (self.epsilon / 2) * (
                     self.state_function(
                         left_neighbor[0] +
                         self.state_function(
@@ -105,7 +105,7 @@ class RulkovLattice(CoupledMapLattice):
         self.state = self.state_function(self.state[0], self.state[1])
 
     def update(self):
-        if self.epsilion < 1:
+        if self.epsilon < 1:
             self._update_coupled()
         else:
             self._update_independent()
@@ -113,5 +113,5 @@ class RulkovLattice(CoupledMapLattice):
         assert self.state[0].shape == (
             self.n, self.n,
         ), 'The shape is not correct'
-        self.history.append(self.state[0])
+        self.append_history(self.state[0])
         self.time += 1

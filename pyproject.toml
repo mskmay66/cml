@@ -18,6 +18,8 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "ffmpeg>=1.4",
+    "ipympl>=0.9.7",
     "jupyter>=1.1.1",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.12",

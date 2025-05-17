@@ -44,7 +44,7 @@ class Visualization:
 
         self._lattice = value
 
-    def animate(self, show: bool = False) -> None:
+    def animate(self, show: bool = False) -> animation.FuncAnimation:
         """Vizulizes the simulation of the lattice over time.
         This method creates an animation of the lattice's state over time
         and saves it as a GIF file. The animation shows the activation
@@ -54,13 +54,16 @@ class Visualization:
             show (bool): Whether to show the plot immediately.
                 Defaults to False.
 
+        Returns:
+            animation.FuncAnimation: The animation object.
+
         Raises:
             AssertionError: If the lattice is not a CoupledMapLattice
                 or if the history does not contain at least two elements.
         """
         self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
-        self._animate(frames=len(self.lattice.history), show=show)
+        return self._animate(frames=len(self.lattice.history), show=show)
 
     def show_nueron(self, nueron: tuple[int]) -> None:
         """Shows the activation over time of a single neuron.
@@ -113,13 +116,16 @@ class Visualization:
         self.ax.set_xticks([])
         return (self.im,)
 
-    def _animate(self, show: bool, frames: int | None = None) -> None:
+    def _animate(self, show: bool, frames: int | None = None) -> animation.FuncAnimation:
         """Animate the visualization.
 
         Args:
             show (bool): Whether to show the plot immediately.
             frames (Optional[int]): The number of frames to animate. If None, use the length of the history.
                     Defaults to None.
+
+        Returns:
+            animation.FuncAnimation: The animation object.
         """
         self.ax.clear()
         if frames is None:
@@ -143,3 +149,4 @@ class Visualization:
 
         if show:
             plt.show()
+        return ani

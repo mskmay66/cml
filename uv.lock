@@ -234,6 +234,8 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "ffmpeg" },
+    { name = "ipympl" },
     { name = "jupyter" },
     { name = "mkdocs" },
     { name = "mkdocs-material" },
@@ -252,6 +254,8 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "ffmpeg", specifier = ">=1.4" },
+    { name = "ipympl", specifier = ">=0.9.7" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-material", specifier = ">=9.6.12" },
@@ -380,6 +384,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/8b/50/4b769ce1ac4071a1e
 wheels = [
     { url = "https://files.pythonhosted.org/packages/90/2b/0817a2b257fe88725c25589d89aec060581aabf668707a8d03b2e9e0cb2a/fastjsonschema-2.21.1-py3-none-any.whl", hash = "sha256:c9e5b7e908310918cf494a434eeb31384dd84a98b57a30bcb1f535015b554667", size = 23924, upload_time = "2024-12-02T10:55:07.599Z" },
 ]
+
+[[package]]
+name = "ffmpeg"
+version = "1.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f0/cc/3b7408b8ecf7c1d20ad480c3eaed7619857bf1054b690226e906fdf14258/ffmpeg-1.4.tar.gz", hash = "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9", size = 5055, upload_time = "2018-10-08T07:50:05.748Z" }
 
 [[package]]
 name = "filelock"
@@ -526,6 +536,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e9/5c/67594cb0c7055dc50814b21731c22a601101ea3b1b50a9a1b090e11f5d0f/ipykernel-6.29.5.tar.gz", hash = "sha256:f093a22c4a40f8828f8e330a9c297cb93dcab13bd9678ded6de8e5cf81c56215", size = 163367, upload_time = "2024-07-01T14:07:22.543Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/94/5c/368ae6c01c7628438358e6d337c19b05425727fbb221d2a3c4303c372f42/ipykernel-6.29.5-py3-none-any.whl", hash = "sha256:afdb66ba5aa354b09b91379bac28ae4afebbb30e8b39510c9690afb7a10421b5", size = 117173, upload_time = "2024-07-01T14:07:19.603Z" },
+]
+
+[[package]]
+name = "ipympl"
+version = "0.9.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ipython" },
+    { name = "ipywidgets" },
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "pillow" },
+    { name = "traitlets" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/39/1b/acd3d481869d614a7acbb831bd9304411eae47b05d7607db989613028788/ipympl-0.9.7.tar.gz", hash = "sha256:3e505a56b6e9a7bfc4d40c1a861a0547adb16820eb67ec79131335dd0a5084f0", size = 58547447, upload_time = "2025-03-05T03:51:14.609Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/86/6b/21c62f1b2b5e18c6553f7364487dfdf7eb7952b1000a1b7863c1f97819e9/ipympl-0.9.7-py3-none-any.whl", hash = "sha256:3698ee7eaa0b047a7603517d7aa1b71b32118a5f51754cab45ec5d994f67208f", size = 515702, upload_time = "2025-03-05T03:50:48.616Z" },
 ]
 
 [[package]]
