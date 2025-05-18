@@ -44,7 +44,7 @@ class Visualization:
 
         self._lattice = value
 
-    def animate(self, show: bool = False) -> animation.FuncAnimation:
+    def animate(self, show: bool = False, save: bool = True) -> animation.FuncAnimation:
         """Vizulizes the simulation of the lattice over time.
         This method creates an animation of the lattice's state over time
         and saves it as a GIF file. The animation shows the activation
@@ -63,7 +63,7 @@ class Visualization:
         """
         self.lattice = self.lattice
         self.fig, self.ax = plt.subplots()
-        return self._animate(frames=len(self.lattice.history), show=show)
+        return self._animate(frames=len(self.lattice.history), show=show, save=save)
 
     def show_nueron(self, nueron: tuple[int]) -> None:
         """Shows the activation over time of a single neuron.
@@ -116,7 +116,7 @@ class Visualization:
         self.ax.set_xticks([])
         return (self.im,)
 
-    def _animate(self, show: bool, frames: int | None = None) -> animation.FuncAnimation:
+    def _animate(self, show: bool, frames: int | None = None, save: bool = True) -> animation.FuncAnimation:
         """Animate the visualization.
 
         Args:
@@ -140,12 +140,14 @@ class Visualization:
             blit=True,
             repeat_delay=1000,
         )
-        os.makedirs('map_animations', exist_ok=True)
-        filename = self.generate_filename()
-        ani.save(
-            os.path.join('map_animations', filename),
-            writer=PillowWriter(fps=5),
-        )
+
+        if save:
+            os.makedirs('map_animations', exist_ok=True)
+            filename = self.generate_filename()
+            ani.save(
+                os.path.join('map_animations', filename),
+                writer=PillowWriter(fps=5),
+            )
 
         if show:
             plt.show()
