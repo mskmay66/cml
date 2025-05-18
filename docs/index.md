@@ -27,6 +27,7 @@ These models are particularly useful in studying choatic, dynamic systems. For e
 
 ### Citations
 
+
 [^1]: Kunihiko Kaneko, Period-Doubling of Kink-Antikink Patterns, Quasiperiodicity in Antiferro-Like Structures and Spatial Intermittency in Coupled Logistic Lattice: Towards a Prelude of a “Field Theory of Chaos”, Progress of Theoretical Physics, Volume 72, Issue 3, September 1984, Pages 480–486, https://doi.org/10.1143/PTP.72.480
 
 [^2]:  N.F. Rulkov (2001). "Regularization of Synchronized Chaotic Bursts". Physical Review Letters. 86 (1): 183–186. arXiv:nlin/0011028. Bibcode:2001PhRvL..86..183R. doi:10.1103/physrevlett.86.183. PMID 11136124. S2CID 7016788
