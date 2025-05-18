@@ -1,11 +1,3 @@
----
-title: cml
-summary: The home page of the cml package .
-authors:
-    - Michael May
-date: 2025-05-18
----
-
 # Overview
 
 cml provides a python implementation of various types of coupled map lattices. A coupled map lattice, or CML, is a dynamic system that models the behavior of nonlinear systems.
