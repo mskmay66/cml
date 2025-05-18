@@ -22,7 +22,7 @@ This package contains several different models, all of which can be broadly desc
 
 ## Chaos
 
-These models are particularly useful in studying choatic, dynamic systems. For example, in one dimension choosing an r parameter of greater than 3.57 for a standard lattice will behave choatically. Choose an r > 3.57 and see what happens.
+These models are particularly useful in studying choatic, dynamic systems. For example, in one dimension choosing an r parameter of greater than 3.57 for a standard lattice will behave choatically.
 
 
 ### Citations
