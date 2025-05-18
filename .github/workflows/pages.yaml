@@ -25,8 +25,6 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - name: Deploy MkDocs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@1.26
-      # - run: pip install uv
-      # - run: uv sync --only-dev
-      # - run: uv run mkdocs gh-deploy --force
+      - run: pip install uv
+      - run: uv sync --only-dev
+      - run: uv run mkdocs gh-deploy --theme material --force
