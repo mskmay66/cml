@@ -1,6 +1,6 @@
 
 
-For more in-depth examples on using cml for your projects check out the notebooks folder of our git [repo](https://github.com/mskmay66/cml). But below is a simple example of using a `RulkovLattice` in python and bash.
+For more in-depth examples on using cml for your projects check out the notebooks folder of our git [repo](https://github.com/mskmay66/cml/tree/main/notebooks). But below is a simple example of using a `RulkovLattice` in python and bash.
 
 ## Python
 
