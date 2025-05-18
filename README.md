@@ -10,13 +10,61 @@ This package contains several different models, all of which can be broadly desc
 
 # A Standard CML
 
+```python
+# initialize the lattice object
+lattice = CoupledMapLattice(n=10, r=4, mu=0, sigma=1)
+
+# run a hundred step simulation
+STEPS = 100
+sim_gen = lattice.simulate(STEPS)
+
+# unpack the generator
+sim = list(sim_gen)
+
+# finally, vizualize your simulation
+viz = Visualization(lattice)
+v = viz.animate()
+```
+
 ![A cml with 10 nuerons, in a stable regime](docs/assets/animated_example.gif)
 
-# A Coupled Kaneko Lattice
+# A Kaneko Lattice
+
+```python
+# initialize the lattice object
+lattice = KanekoLattice(n=10, r=4, mu=0, sigma=1)
+
+# run a hundred step simulation
+STEPS = 100
+sim_gen = lattice.simulate(STEPS)
+
+# unpack the generator
+sim = list(sim_gen)
+
+# finally, vizualize your simulation
+viz = Visualization(lattice)
+v = viz
+```
 
 ![A coupled kaneko](docs/assets/coupled_kaneko.gif)
 
 # An Uncoupled Rulkov Lattice
+
+```python
+# initialize the lattice object
+lattice = RulkovLattice(n=10, r=4, mu=0, sigma=1, epsilon=1)
+
+# run a hundred step simulation
+STEPS = 100
+sim_gen = lattice.simulate(STEPS)
+
+# unpack the generator
+sim = list(sim_gen)
+
+# finally, vizualize your simulation
+viz = Visualization(lattice)
+v = viz
+```
 
 ![A uncoupled rulkov](docs/assets/uncoupled_rulkov.gif)
 
