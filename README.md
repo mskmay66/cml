@@ -10,15 +10,15 @@ This package contains several different models, all of which can be broadly desc
 
 # A Standard CML
 
-![A cml with 10 nuerons, in a stable regime](assets/animated_example.gif)
+![A cml with 10 nuerons, in a stable regime](docs/assets/animated_example.gif)
 
 # A Coupled Kaneko Lattice
 
-![A coupled kaneko](assets/coupled_kaneko.gif)
+![A coupled kaneko](docs/assets/coupled_kaneko.gif)
 
 # An Uncoupled Rulkov Lattice
 
-![A uncoupled rulkov](assets/uncoupled_rulkov.gif)
+![A uncoupled rulkov](docs/assets/uncoupled_rulkov.gif)
 
 ## Chaos
 
