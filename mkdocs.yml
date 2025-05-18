@@ -16,6 +16,7 @@ nav:
 
 theme:
   name: material
+  logo: assets/logo.png
   palette:
     # primary: indigo
     # accent: blue grey
@@ -39,3 +40,6 @@ plugins:
             docstring_style: sphinx
 markdown_extensions:
   - footnotes
+
+extra_css:
+  - stylesheets/extra.css
