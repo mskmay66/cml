@@ -6,8 +6,8 @@ from .cml import CoupledMapLattice
 class KanekoLattice(CoupledMapLattice):
     """An implementation of the Kaneko map."""
 
-    def __init__(self, n: int, r: float, epsilion: float = 1) -> None:
-        super().__init__(n, r, epsilion)
+    def __init__(self, n: int, r: float, epsilon: float = 1) -> None:
+        super().__init__(n, r, epsilon)
 
     def __repr__(self):
         return f"KenekoLattice(n={self.n}, r={self.r}, epsilion={self.epsilon})"

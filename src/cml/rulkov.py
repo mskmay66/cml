@@ -28,9 +28,9 @@ class RulkovLattice(CoupledMapLattice):
         r: float,
         mu: float,
         sigma: float,
-        epsilion: float = 1,
+        epsilon: float = 1,
     ) -> None:
-        super().__init__(n, r, epsilion)
+        super().__init__(n, r, epsilon)
         self.mu = mu
         self.sigma = sigma
         self.history = [self.state[0]]
@@ -87,15 +87,9 @@ class RulkovLattice(CoupledMapLattice):
                     state[0, i, j],
                     state[1, i, j],
                 ) + (self.epsilon / 2) * (
+                    self.state_function(left_neighbor[0, j], left_neighbor[1, j]) +
                     self.state_function(
-                        left_neighbor[0] +
-                        self.state_function(
-                            left_neighbor[0], left_neighbor[1],
-                        ),
-                        left_neighbor[1] +
-                        self.state_function(
-                            right_neighbor[0], right_neighbor[1],
-                        ),
+                        right_neighbor[0, j], right_neighbor[1, j],
                     )
                 )
         self.state = state
