@@ -1,7 +1,7 @@
-site_name: cml
+site_name: cmlattice
 site_description: A simple command line tool for running Coupled Map Lattice simulations.
 site_author: Michael May
-site_url: https://mskmay66.github.io/cml/
+site_url: https://mskmay66.github.io/cmlattice/
 nav:
   - Home: index.md
   - Getting Started:

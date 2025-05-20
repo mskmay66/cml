@@ -1,3 +1,3 @@
 # Visualization
 
-::: cml.viz.Visualization
+::: cmlattice.viz.Visualization

@@ -1,3 +1,3 @@
 # KanekoLattice
 
-::: cml.kaneko.KanekoLattice
+::: cmlattice.kaneko.KanekoLattice

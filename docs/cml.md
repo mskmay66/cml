@@ -1,3 +1,3 @@
 # CoupledMapLattice
 
-::: cml.cml.CoupledMapLattice
+::: cmlattice.cmlattice.CoupledMapLattice

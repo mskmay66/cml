@@ -1,3 +1,3 @@
 # RulkovLattice
 
-::: cml.rulkov.RulkovLattice
+::: cmlattice.rulkov.RulkovLattice
