@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .cml import CoupledMapLattice
+from .cmlattice import CoupledMapLattice
 
 
 class KanekoLattice(CoupledMapLattice):

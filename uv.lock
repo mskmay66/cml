@@ -224,8 +224,8 @@ wheels = [
 ]
 
 [[package]]
-name = "cml"
-version = "0.1.0"
+name = "cmlattice"
+version = "0.0.2"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },

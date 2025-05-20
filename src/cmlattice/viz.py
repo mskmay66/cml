@@ -9,7 +9,7 @@ from matplotlib import animation
 from matplotlib.animation import PillowWriter
 from matplotlib.image import AxesImage
 
-from .cml import CoupledMapLattice
+from .cmlattice import CoupledMapLattice
 
 
 class Visualization:

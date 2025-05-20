@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import numpy as np
-from cml import CoupledMapLattice
-from cml import KanekoLattice
-from cml import RulkovLattice
+from cmlattice import CoupledMapLattice
+from cmlattice import KanekoLattice
+from cmlattice import RulkovLattice
 
 
 def test_kaneko():

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from .cli import main
-from .cml import CoupledMapLattice
+from .cmlattice import CoupledMapLattice
 from .kaneko import KanekoLattice
 from .rulkov import RulkovLattice
 from .viz import Visualization

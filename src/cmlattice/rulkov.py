@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .cml import CoupledMapLattice
+from .cmlattice import CoupledMapLattice
 
 
 class RulkovLattice(CoupledMapLattice):

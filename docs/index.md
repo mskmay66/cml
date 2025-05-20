@@ -1,6 +1,6 @@
 # Overview
 
-cml provides a python implementation of various types of coupled map lattices. A coupled map lattice, or CML, is a dynamic system that models the behavior of nonlinear systems.
+cmlattice provides a python implementation of various types of coupled map lattices. A coupled map lattice, or CML, is a dynamic system that models the behavior of nonlinear systems.
 
 This package contains several different models, all of which can be broadly described as cmls:
 
